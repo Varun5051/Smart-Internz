@@ -1,0 +1,380 @@
+[
+    {
+        "id": "b84b6536.ac3228",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "68c3484a.66b068",
+        "type": "ui_tab",
+        "z": 0,
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "c9bc1a2e.78e008",
+        "type": "ui_group",
+        "z": 0,
+        "name": "Search Engine",
+        "tab": "68c3484a.66b068",
+        "order": 1,
+        "disp": true,
+        "width": "18",
+        "collapse": false
+    },
+    {
+        "id": "5272e39d.c70fec",
+        "type": "ui_base",
+        "z": 0,
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "reset": false
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#000000",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "e92d5732.08b438",
+        "type": "ui_group",
+        "z": 0,
+        "name": "Graph",
+        "tab": "68c3484a.66b068",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "a155f3b9.cbf5e",
+        "type": "ui_group",
+        "z": 0,
+        "name": "BAR CHART",
+        "tab": "68c3484a.66b068",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "edfd55ac.7407e8",
+        "type": "ui_form",
+        "z": "b84b6536.ac3228",
+        "name": "",
+        "label": "",
+        "group": "c9bc1a2e.78e008",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Enter your Query",
+                "value": "Input",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "Input": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "",
+        "x": 110,
+        "y": 260,
+        "wires": [
+            [
+                "7867b33d.2cad2c"
+            ]
+        ]
+    },
+    {
+        "id": "7867b33d.2cad2c",
+        "type": "function",
+        "z": "b84b6536.ac3228",
+        "name": "",
+        "func": "msg={\n    discoveryparams:\n    {\n        \"environment_id\":\"system\",\n        \"query\":msg.payload.input\n    }\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 220,
+        "y": 200,
+        "wires": [
+            [
+                "39f18e9a.9ea002"
+            ]
+        ]
+    },
+    {
+        "id": "39f18e9a.9ea002",
+        "type": "watson-discovery-v1",
+        "z": "b84b6536.ac3228",
+        "name": "newsapp",
+        "environmentname": "",
+        "environmentId": "system",
+        "collectionId": "news-en",
+        "configurationname": "",
+        "configurationId": "",
+        "language_code": "en",
+        "collection_name": "",
+        "count": "10",
+        "passages": true,
+        "nlp_query": true,
+        "query": "",
+        "filter": "",
+        "aggregation": "term(enriched_text.sentiment.document.label,count:10)",
+        "return": "",
+        "description": "",
+        "size": "LT",
+        "discovery-method": "query",
+        "service-endpoint": "https://api.eu-gb.discovery.watson.cloud.ibm.com/instances/20dbf217-42a3-4382-8841-0fbd97a54f32",
+        "x": 380,
+        "y": 180,
+        "wires": [
+            [
+                "d5531148.26cc5",
+                "57ca81cc.b718d"
+            ]
+        ]
+    },
+    {
+        "id": "d5531148.26cc5",
+        "type": "function",
+        "z": "b84b6536.ac3228",
+        "name": "News",
+        "func": "var arr=[];\nvar i;\nfor(i=0;i<10;i++)\n{\n    arr.push({title:msg.search_results.results[i].title,\n        content:msg.search_results.results[i].text,\n        url:msg.search_results.results[i].url\n    });\n    \n}\nmsg.payload=arr;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 560,
+        "y": 200,
+        "wires": [
+            [
+                "2d06da1f.c30f26",
+                "57ed3ced.08a164",
+                "f37964a6.bb37b8"
+            ]
+        ]
+    },
+    {
+        "id": "2d06da1f.c30f26",
+        "type": "debug",
+        "z": "b84b6536.ac3228",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 710,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "57ed3ced.08a164",
+        "type": "ui_template",
+        "z": "b84b6536.ac3228",
+        "group": "c9bc1a2e.78e008",
+        "name": "",
+        "order": 1,
+        "width": "18",
+        "height": "9",
+        "format": "<div>\n    <p ng-repeat=\"x in msg.payload\"><style>a { color: white; }</style><b><a href=\"{{x['url']}}\" target=\"_blank\">{{x[\"title\"]}}</a></b><br>{{x['content']}}<br><br><br>\n    </p>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 740,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "57ca81cc.b718d",
+        "type": "function",
+        "z": "b84b6536.ac3228",
+        "name": "Sentiment",
+        "func": "var val=[msg.search_results.aggregations[0].results[0].matching_results];\nval.push(msg.search_results.aggregations[0].results[1].matching_results);\nval.push(msg.search_results.aggregations[0].results[2].matching_results);\nmsg.payload=val;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 320,
+        "wires": [
+            [
+                "d22acc45.c8409"
+            ]
+        ]
+    },
+    {
+        "id": "d22acc45.c8409",
+        "type": "function",
+        "z": "b84b6536.ac3228",
+        "name": "Graph1",
+        "func": "msg.payload=[{\n    \"series\": [ \"News\" ],\n    \"data\": [ msg.payload[0], msg.payload[1], msg.payload[2] ],\n    \"labels\": [ \"Positive\", \"Negative\", \"Neutral\" ]\n}]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 400,
+        "wires": [
+            [
+                "74bb4228.fd77cc"
+            ]
+        ]
+    },
+    {
+        "id": "74bb4228.fd77cc",
+        "type": "ui_chart",
+        "z": "b84b6536.ac3228",
+        "name": "",
+        "group": "e92d5732.08b438",
+        "order": 2,
+        "width": "6",
+        "height": "9",
+        "label": "chart",
+        "chartType": "bar",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#00ff00",
+            "#fe0101",
+            "#0101fe",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 790,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f37964a6.bb37b8",
+        "type": "ui_template",
+        "z": "b84b6536.ac3228",
+        "group": "c9bc1a2e.78e008",
+        "name": "",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n::-webkit-scrollbar{\n    width: 10px;\n}\n::-webkit-scrollbar-track{\n    box-shadow: inset 0 0 5px grey;\n    border-radius: 10px;\n}\n::-webkit-scrollbar-thumb{\n    background: white;\n    border-radius: 10px;\n}\n::-webkit-scrollbar-thumb:hover{\n    background: #fc6900;\n}\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 720,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    }
+]
